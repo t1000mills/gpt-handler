@@ -3,20 +3,28 @@ import openai
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
-# get user input
-user_input = input('Prompt: ')
+# initialize conversation with a system message
+messages = [{'role': 'system', 'content': 'You are a helpful assistant.'}]
 
-# send request and get response
-response = openai.ChatCompletion.create(
-    model = 'gpt-4o',
-    messages = [
-        {'role': 'system', 'content': 'You are a helpful assistant.'},
-        {'role': 'user', 'content': user_input}
-    ],
-    temperature = 0.5,
-    max_tokens = 1024
-)
+# infinite loop to capture back and forth exchange
+while True:
 
-print(response)
-print()
-print(response.choices[0].message.content)
+    # get user input
+    user_input = input('Me: ')
+
+    # Add the user message to the conversation history
+    messages.append({'role': 'user', 'content': user_input})
+
+    # send request and get response
+    response = openai.ChatCompletion.create(
+        model = 'gpt-4o',
+        messages = messages,
+        temperature = 0.5,
+        max_tokens = 1024
+    )
+
+    gpt_response = response.choices[0].message.content
+    print(f'GPT: {gpt_response}')
+
+    # Add grandmas message to the conversation history
+    messages.append({'role': 'assistant', 'content': gpt_response})
