@@ -10,9 +10,9 @@ messages = [{'role': 'system', 'content': 'You are a helpful assistant.'}]
 while True:
 
     # get user input
-    user_input = input('Me: ')
+    user_input = input('ME: ')
 
-    # Add the user message to the conversation history
+    # add the user message to the conversation history
     messages.append({'role': 'user', 'content': user_input})
 
     # send request and get response
@@ -26,5 +26,5 @@ while True:
     gpt_response = response.choices[0].message.content
     print(f'GPT: {gpt_response}')
 
-    # Add grandmas message to the conversation history
+    # add gpt's message to the conversation history
     messages.append({'role': 'assistant', 'content': gpt_response})
