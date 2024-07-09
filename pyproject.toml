@@ -1,0 +1,33 @@
+# pyproject.toml
+
+
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "gpt-handler"
+version = "0.0.1"
+description = "CLI to manage multiple GPT assistants using the OpenAI API"
+readme = "README.md"
+authors = [{ name = "Trevor Mills", email = "t1000mills@gmail.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["gpt", "openai"]
+dependencies = [
+    "openai >= 1.35.10",
+    "click >= 8.1.7",
+]
+requires-python = ">=3.10.12"
+
+
+[project.optional-dependencies]
+
+
+[project.scripts]
+gpt = "gpt.__main__:gpt"
